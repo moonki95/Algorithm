@@ -18,3 +18,27 @@
     def lcm(a,b):
         return a * b // gcd(a,b)
     ```
+
+## 2. 소수 구하기
+* 일반적인 소수 판별하기(시간고려안하고 무식하게 다 구하는 방법)
+  ```python
+  def isPrime(num):
+    for i in range(2,num):
+      if num % i == 0:
+        return 0
+    return 1
+  ```
+* 에라토스테네스의 체(시간을 많이 줄일 수 있는 효과적인 방법)
+  * 2가 소수면 2의 배수는 소수가 아님, 즉 2의 배수는 모두 False처리
+  * 3이 소수면 3의 배수는 소수가 아님, 즉 3의 배수는 모두 False처리
+  * 이렇게 직접 무식하게 다 구하는 방법보다는 에라토스테네스의 체 방법을 써서 구하는것이 효율적
+  ```python
+  Prime = [True] * NUMBER
+  def isPrime():
+    for i in range(2, int(NUMBER ** 0.5) +1):
+      if Prime[i] == True:
+        j = 2
+        while i * j <= NUMBER:
+          Prime[i*j] = False
+          j += 1
+  ```
